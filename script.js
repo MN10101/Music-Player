@@ -1,4 +1,4 @@
-var audio , playbtn , title , poster , artists , seekslider , seeking=false , seekto, currenttimetext , durationtimetext , playlist_status , dir , playlist , ext , agent , playlists_artists , repeat , random;
+var audio , playbtn , title , poster , artists , seekslider , seeking=false , seekto, currenttimetext , durationtimetext , playlist_status , dir , playlist , ext , agent , playlists_artists , repeat , randomSong;
 
 dir = "songs/";
 playlist = ["AL025 - Denis Horvat - Noise feat. Lelah" , "Alex Stein - Bonfire (Original Mix)" , "yt1s.com - Adam Beyer  Ida Engberg  Lovecraft Original Mix","yt1s.com - Adam Beyer  Joseph Capriati  Family Matters Original Mix","yt1s.com - Meraki Original Mix","yt1s.com - Moonwalk  Galactic Original Mix","yt1s.com - Moonwalk  Nocturna Original Mix"]
@@ -40,6 +40,11 @@ seekslider.addEventListener("mousemove",function(event){ seek(event);});
 
 seekslider.addEventListener("mouseup", function(){seeking=false;});
 
+seekslider.addEventListener("input", function() {
+    var seekto = audio.duration * (seekslider.value / 100);
+    audio.currentTime = seekto;
+});
+
 audio.addEventListener("timeupdate",function(){seektimeupdate();});
 audio.addEventListener("ended",function(){
     switchTrack();
@@ -47,16 +52,13 @@ audio.addEventListener("ended",function(){
 repeat.addEventListener("click",loop);
 randomSong.addEventListener("click",random);
 
-
-
-
 //functions
 
 function fetchMusicDetail(){
     $("#image").attr("src",poster[playlist_index]);
 
     playlist_status.innerHTML = title[playlist_index];
-    playlist_artist.innerHTML = artists[playlist_index];
+    playlists_artists.innerHTML = artists[playlist_index];
 
     audio.src = dir+playlist[playlist_index]+ext;
     audio.play();
@@ -139,10 +141,10 @@ function seektimeupdate(){
     if(audio.duration){
         var nt = audio.currentTime * (100 / audio.duration);
         seekslider.value = nt;
-        var curmins = Math.floor(audio.currentTime / 60); 
-        var cursecs = Math.floor(audio.currentTime - curmins * 60); 
-        var durmins = Math.floor(audio.duration / 60); 
-        var dursecs = Math.floor(audio.duration - durmins * 60); 
+        var curmins = Math.floor(audio.currentTime / 60);
+        var cursecs = Math.floor(audio.currentTime - curmins * 60);
+        var durmins = Math.floor(audio.duration / 60);
+        var dursecs = Math.floor(audio.duration - durmins * 60);
         if(cursecs < 10){ cursecs = "0"+cursecs; }
         if(dursecs < 10){ dursecs = "0"+dursecs; }
         if(curmins < 10){ curmins = "0"+curmins; }
