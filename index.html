@@ -10,12 +10,16 @@
 </head>
 <body>
     <main class="player">
+        <!-- Header -->
         <div class="header">
+            <!-- Menu Button -->
             <a href="#" class="button">
                 <i class="fas fa-bars"></i>
                 <!-- <span class="sr-only">Menu Bar</span> -->
             </a>
+            <!-- Now Playing -->
             <p>Now Playing</p>
+            <!-- Theme Toggle Button -->
             <a href="#" class="button">
                 <label>
                     <input type="checkbox" name="theme">
@@ -24,42 +28,55 @@
                 </label>
             </a>
         </div>
+        <!-- Album Image -->
         <img src="images/1.jpg" alt="album" id="image" class="image">
+        <!-- Song Information -->
         <div class="information">
             <h1 id="playlist_status"></h1>
             <p id="playlist_artist"></p>
         </div>
+        <!-- Progress Bar -->
         <div class="progress">
+            <!-- Current Time and Duration -->
             <div class="progress-time">
                 <span id="currenttimetext" class="left">00:00</span>
                 <span id="durationtimetext" class="right">00:00</span>
             </div>
+            <!-- Seek Slider -->
             <div class="progress-bar">
                 <input type="range" name="" id="seekslider" class="seekslider" min="0" max="100" value="0" step="1">
             </div>
         </div>
+        <!-- Control Buttons -->
         <ul class="buttons">
+            <!-- Shuffle Button -->
             <span id="random" class="shuffle button button-sm">
                 <i class="fas fa-random fa-sm"></i>
             </span>
+            <!-- Previous Button -->
             <span id="prevbtn" class="prev button button-md">
                 <i class="fas fa-step-backward"></i>
             </span>
+            <!-- Play/Pause Button -->
             <span id="playpausebtn" class="playpause button button-lg">
                 <i class="fas fa-play fa-lg"></i>
                 <i class="fas fa-pause fa-lg"></i>
             </span>
+            <!-- Next Button -->
             <span id="nextbtn" class="next button button-md">
                 <i class="fas fa-step-forward"></i>
             </span>
+            <!-- Repeat Button -->
             <span id="repeat" class="loop button button-sm">
                 <i class="fas fa-circle-notch fa-sm"></i>
             </span>
         </ul>
+        <!-- Progress Bar Background -->
         <div class="bar"></div>
     </main>
-    <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 </html>
