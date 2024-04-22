@@ -27,7 +27,7 @@ A simple music player built using HTML, CSS, and JavaScript.
 - Loop functionality is available, click on the loop icon to toggle.
 
 ## Author
-Mahmoud Najmeg
+Mahmoud Najmeh
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
