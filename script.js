@@ -1,19 +1,63 @@
 var audio , playbtn , title , poster , artists , seekslider , seeking=false , seekto, currenttimetext , durationtimetext , playlist_status , dir , playlist , ext , agent , playlists_artists , repeat , randomSong;
 
+// Directory where songs are located
 dir = "songs/";
-playlist = ["AL025 - Denis Horvat - Noise feat. Lelah" , "Alex Stein - Bonfire (Original Mix)" , "yt1s.com - Adam Beyer  Ida Engberg  Lovecraft Original Mix","yt1s.com - Adam Beyer  Joseph Capriati  Family Matters Original Mix","yt1s.com - Meraki Original Mix","yt1s.com - Moonwalk  Galactic Original Mix","yt1s.com - Moonwalk  Nocturna Original Mix"]
 
-title =["Lelah" , "Bonfire " , "Ida Engberg  Lovecraft ","Joseph Capriati  Family Matters Original Mix","Meraki ","Galactic ","Nocturna "]
-poster=["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg","images/5.jpg","images/6.jpg","images/7.jpg"]
-artists=["Denis Horvat", "Alex Stein","Xaia, Rain Man","Adam Beyer","Adam Beyer","Meraki","Moonwalk  , Moonwalk"]
+// Array of song names
+playlist = [
+    "AL025 - Denis Horvat - Noise feat. Lelah",
+    "Alex Stein - Bonfire (Original Mix)",
+    "yt1s.com - Adam Beyer  Ida Engberg  Lovecraft Original Mix",
+    "yt1s.com - Adam Beyer  Joseph Capriati  Family Matters Original Mix",
+    "yt1s.com - Meraki Original Mix",
+    "yt1s.com - Moonwalk  Galactic Original Mix",
+    "yt1s.com - Moonwalk  Nocturna Original Mix"
+];
 
+// Array of song titles
+title = [
+    "Lelah",
+    "Bonfire",
+    "Ida Engberg - Lovecraft",
+    "Joseph Capriati - Family Matters Original Mix",
+    "Meraki",
+    "Galactic",
+    "Nocturna"
+];
+
+// Array of poster images
+poster = [
+    "images/1.jpg",
+    "images/2.jpg",
+    "images/3.jpg",
+    "images/4.jpg",
+    "images/5.jpg",
+    "images/6.jpg",
+    "images/7.jpg"
+];
+
+// Array of artists
+artists = [
+    "Denis Horvat",
+    "Alex Stein",
+    "Xaia, Rain Man",
+    "Adam Beyer",
+    "Adam Beyer",
+    "Meraki",
+    "Moonwalk, Moonwalk"
+];
+
+// Initialize playlist index
 playlist_index = 0;
 
-ext =".mp3"
+// Audio file extension
+ext = ".mp3";
 agent = navigator.userAgent.toLowerCase();
 if(agent.indexOf('firefox') != -1 || agent.indexOf('opera') != -1){
     ext=".ogg";
 }
+
+// Get DOM elements
 playbtn = document.getElementById("playpausebtn");
 nextbtn = document.getElementById("nextbtn");
 prevbtn = document.getElementById("prevbtn");
@@ -25,46 +69,51 @@ playlists_artists = document.getElementById("playlist_artist");
 repeat = document.getElementById("repeat");
 randomSong = document.getElementById("random");
 
+// Create new audio element
 audio = new Audio();
-audio.src = dir+playlist[0]+ext;
+audio.src = dir + playlist[0] + ext;
 audio.loop = false;
 
+// Update playlist status and artist
 playlist_status.innerHTML = title[playlist_index];
 playlists_artists.innerHTML = artists[playlist_index];
 
-playbtn.addEventListener("click",playPause);
-nextbtn.addEventListener("click",nextSong);
-prevbtn.addEventListener("click",prevSong);
-seekslider.addEventListener("mousedown" , function(event){ seeking=true; seek(event);});
-seekslider.addEventListener("mousemove",function(event){ seek(event);});
+// Add event listeners
+playbtn.addEventListener("click", playPause);
+nextbtn.addEventListener("click", nextSong);
+prevbtn.addEventListener("click", prevSong);
 
-seekslider.addEventListener("mouseup", function(){seeking=false;});
-
+// Handle seekbar events
+seekslider.addEventListener("mousedown", function(event){ seeking=true; seek(event); });
+seekslider.addEventListener("mousemove", function(event){ seek(event); });
+seekslider.addEventListener("mouseup", function(){ seeking=false; });
 seekslider.addEventListener("input", function() {
     var seekto = audio.duration * (seekslider.value / 100);
     audio.currentTime = seekto;
 });
 
-audio.addEventListener("timeupdate",function(){seektimeupdate();});
-audio.addEventListener("ended",function(){
-    switchTrack();
-});
-repeat.addEventListener("click",loop);
-randomSong.addEventListener("click",random);
+// Update time when playing
+audio.addEventListener("timeupdate", function(){ seektimeupdate(); });
+audio.addEventListener("ended", function(){ switchTrack(); });
 
-//functions
+// Add event listeners for repeat and random buttons
+repeat.addEventListener("click", loop);
+randomSong.addEventListener("click", random);
 
+// Functions
+
+// Fetch song details
 function fetchMusicDetail(){
-    $("#image").attr("src",poster[playlist_index]);
+    $("#image").attr("src", poster[playlist_index]);
 
     playlist_status.innerHTML = title[playlist_index];
     playlists_artists.innerHTML = artists[playlist_index];
 
-    audio.src = dir+playlist[playlist_index]+ext;
+    audio.src = dir + playlist[playlist_index] + ext;
     audio.play();
 }
 
-
+// Generate random number
 function getRandomNumber(min , max){
     let step1 = max - min + 1;
     let step2 = Math.random() * step1;
@@ -72,6 +121,7 @@ function getRandomNumber(min , max){
     return result;
 }
 
+// Play random song
 function random(){
     let randomIndex = getRandomNumber(0 , playlist.length-1);
     playlist_index = randomIndex;
@@ -79,6 +129,7 @@ function random(){
     document.querySelector(".playpause").classList.add("active");
 }
 
+// Toggle loop mode
 function loop(){
     if(audio.loop){
         audio.loop = false;
@@ -89,6 +140,7 @@ function loop(){
     }
 }
 
+// Play next song
 function nextSong(){
     document.querySelector(".playpause").classList.add("active");
     playlist_index++;
@@ -97,6 +149,8 @@ function nextSong(){
     }
     fetchMusicDetail();
 }
+
+// Play previous song
 function prevSong(){
     document.querySelector(".playpause").classList.add("active");
     playlist_index--;
@@ -106,6 +160,7 @@ function prevSong(){
     fetchMusicDetail();
 }
 
+// Play or pause the song
 function playPause(){
     if(audio.paused){
         audio.play();
@@ -116,6 +171,7 @@ function playPause(){
     }
 }
 
+// Switch to next song
 function switchTrack(){
     if(playlist_index == (playlist.length - 1)){
         playlist_index = 0;
@@ -125,6 +181,7 @@ function switchTrack(){
     fetchMusicDetail();
 }
 
+// Seek function
 function seek(event){
     if(audio.duration == 0){
         null
@@ -137,6 +194,7 @@ function seek(event){
     }
 }
 
+// Update seekbar and time
 function seektimeupdate(){
     if(audio.duration){
         var nt = audio.currentTime * (100 / audio.duration);
@@ -157,11 +215,12 @@ function seektimeupdate(){
     }
 }
 
+// Dark mode toggle
 let checkbox = document.querySelector('input[name=theme]');
-checkbox.addEventListener('change',function(){
+checkbox.addEventListener('change', function(){
     if(this.checked){
         document.documentElement.setAttribute('data-theme','dark');
     }else{
         document.documentElement.setAttribute('data-theme','light');
     }
-})
+});
