@@ -33,10 +33,11 @@ Mahmoud Najmeg
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 
-
-
-
 ## Screenshots
+
+![1](https://github.com/MN10101/Music-Player/assets/78208459/201aaeb7-0fd6-4897-9d08-1c365b61d6d7)
+
+![2](https://github.com/MN10101/Music-Player/assets/78208459/cfc06fe9-3c71-4e3d-a8b7-160fd879d3c0)
 
 
 
