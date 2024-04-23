@@ -1,44 +1,43 @@
-*{
+/* Reset styles */
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     font-size: 14px;
 }
-/* #for white theme */
 
-/* currently it is light theme but later with help of js we will make toggle button which will tranform it to dark and light mode */
-html{
+/* Light theme */
+html {
     --bg: #f5f6f7;
     --color-text: #9c9c9c;
     --banner: #333333;
-    --color-shadow: -4px -2px 4px 0px #ffffff,
-    4px 2px 6px 0 #dfe4ea;
-    --color-inset-shadow: inset -2px -2px 6px rgba(255,255,255,0.8),
-                        inset 2px 2px 6px rgba(0 ,0,0,0.1);
-    
+    --color-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0 #dfe4ea;
+    --color-inset-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.8), inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
-html[data-theme='dark']{
+
+/* Dark theme */
+html[data-theme='dark'] {
     --bg: #121212;
     --color-text: #e2e2e2;
     --banner: #fefefe;
-    --color-shadow: -3px -3px 10px rgba(255,255,255,0.05),
-    3px 3px 15px rgba(0,0,0,0.5);
-    --color-inset-shadow: inset -2px -2px 6px rgba(255,255,255,0.01),
-                        inset 2px 2px 6px rgba(0 ,0,0,0.8);
-    
+    --color-shadow: -3px -3px 10px rgba(255, 255, 255, 0.05), 3px 3px 15px rgba(0, 0, 0, 0.5);
+    --color-inset-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.01), inset 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-body{
+/* Body styles */
+body {
     background: var(--bg);
     color: var(--color-text);
 }
 
-a{
+/* Link styles */
+a {
     text-decoration: none;
 }
 
-.player{
+/* Player container */
+.player {
     width: 80%;
     min-height: 550px;
     max-width: 300px;
@@ -50,7 +49,8 @@ a{
     position: relative;
 }
 
-.header{
+/* Header styles */
+.header {
     height: 40px;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -58,7 +58,8 @@ a{
     justify-items: center;
 }
 
-.header > .button{
+/* Header button styles */
+.header > .button {
     width: 2rem;
     height: 2rem;
     display: grid;
@@ -69,7 +70,8 @@ a{
     border-radius: 5px;
 }
 
-.image{
+/* Profile image styles */
+.image {
     display: block;
     width: 175px;
     height: 175px;
@@ -80,29 +82,32 @@ a{
     box-shadow: var(--color-shadow);
 }
 
-.information{
+/* Information styles */
+.information {
     margin: 1.5rem 0;
     text-align: center;
-
 }
 
-.information h1{
-    color: var(--banner);
+/* Title styles */
+.information h1 {
+    color: var(--black);
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-.information p{
+/* Description styles */
+.information p {
     font-size: 1.15rem;
     color: var(--color-text);
-
 }
 
-.progress{
+/* Progress bar container */
+.progress {
     padding: 10px 0;
 }
 
-.progress-time{
+/* Progress time container */
+.progress-time {
     padding: 3px 5px;
     color: var(--color-text);
     font-weight: bold;
@@ -110,11 +115,13 @@ a{
     justify-content: space-between;
 }
 
-.progress-time > p{
+/* Progress time paragraph styles */
+.progress-time > p {
     font-size: 0.65rem;
 }
 
-.buttons{
+/* Button list container */
+.buttons {
     margin: 2rem 0;
     list-style: none;
     display: flex;
@@ -123,7 +130,8 @@ a{
     cursor: pointer;
 }
 
-.button{
+/* Button styles */
+.button {
     color: var(--color-text);
     border-radius: 50%;
     margin: 0 5px;
@@ -133,59 +141,74 @@ a{
     box-shadow: var(--color-shadow);
 }
 
-.button-sm{
+/* Small button styles */
+.button-sm {
     width: 2rem;
     height: 2rem;
     opacity: 0.75;
 }
-.button-md{
+
+/* Medium button styles */
+.button-md {
     width: 2.5rem;
     height: 2.5rem;
     opacity: 0.85;
 }
-.button-lg{
+
+/* Large button styles */
+.button-lg {
     width: 3.25rem;
     height: 3.25rem;
-    /* opacity: 1; */
 }
 
-.bar{
+/* Progress bar styles */
+.bar {
     width: 50%;
     height: 2px;
     margin: auto;
     background: var(--color-text);
     border-radius: 25px;
     position: absolute;
-    transform: translate(-50% , -50%) ;
+    transform: translate(-50%, -50%);
     left: 50%;
     bottom: 1rem;
 }
 
-.playpause.active{
+/* Play/pause button active styles */
+.playpause.active {
     box-shadow: var(--color-inset-shadow);
 }
 
+/* Loop, shuffle, prev, next button active styles */
 .loop.active,
 .shuffle:active,
 .prev:active,
-.next:active{
+.next:active {
     box-shadow: var(--color-inset-shadow);
 }
 
-.fa-play{
-    display: block;
-}
-.fa-pause{
-    display: none;
-}
-.playpause.active .fa-play{
-    display: none;
-}
-.playpause.active .fa-pause{
+/* Play icon styles */
+.fa-play {
     display: block;
 }
 
-.seekslider{
+/* Pause icon styles */
+.fa-pause {
+    display: none;
+}
+
+/* Play/pause active icon styles */
+.playpause.active .fa-play {
+    display: none;
+}
+
+/* Play/pause active icon styles */
+.playpause.active .fa-pause {
+    display: block;
+}
+
+/* Seek slider styles */
+.seekslider {
     width: 100px;
     height: 3px !important;
     -webkit-appearance: none;
@@ -198,8 +221,8 @@ a{
     margin-top: 10px;
 }
 
-
-.seekslider::-webkit-slider-thumb{
+/* Seek slider thumb styles */
+.seekslider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 10px;
     height: 10px;
@@ -209,13 +232,18 @@ a{
     outline: none;
     transform: scale(1);
 }
-.seekslider:active::-webkit-slider-thumb{
+
+/* Seek slider thumb active styles */
+.seekslider:active::-webkit-slider-thumb {
     transform: scale(1.2);
 }
-label{
+
+/* Label styles */
+label {
     cursor: pointer;
 }
 
-input[type="checkbox"]{
+/* Checkbox input styles */
+input[type="checkbox"] {
     -webkit-appearance: none;
 }
