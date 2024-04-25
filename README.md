@@ -4,7 +4,7 @@ A simple music player built using HTML, CSS, and JavaScript.
 
 ## Features
 
-- Play, pause, skip forward, skip backward functionalities.
+- Play, pause, fast forward, skip forward, skip backward functionalities.
 - Progress bar to show current playback position.
 - Dark mode toggle.
 - Random song selection.
